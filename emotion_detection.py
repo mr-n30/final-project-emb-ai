@@ -8,11 +8,11 @@ def emotion_detector(text_to_analyse: str) -> dict:
 
         r = requests.post(url, headers=headers, json=body).json()
 
-        anger = r['anger_score']
-        disgust = r['disgust_score']
-        fear = r['fear_score']
-        joy = r['joy_score']
-        sadness = r['sadness_score']
+        anger = r['emotionPredictions'][0]['emotion']['anger']
+        disgust = r['emotionPredictions'][0]['emotion']['disgust']
+        fear = r['emotionPredictions'][0]['emotion']['fear']
+        joy = r['emotionPredictions'][0]['emotion']['joy']
+        sadness = r['emotionPredictions'][0]['emotion']['sadness']
         dominant_emotion = max([anger, disgust, fear, joy, sadness])
 
         response_dict = {
@@ -27,4 +27,4 @@ def emotion_detector(text_to_analyse: str) -> dict:
         return response_dict
     except Exception as e:
         print(f'Error occurred=>{e}')
-        return {}
+ķ       return {}
