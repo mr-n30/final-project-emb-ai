@@ -33,4 +33,4 @@ def emotion_detector(text_to_analyse: str) -> dict:
         return response_dict
     except Exception as e:
         print(f'Error occurred=>{e}')
-        return {}
+        return {"error": str(e)}
