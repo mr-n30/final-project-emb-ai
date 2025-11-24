@@ -13,7 +13,8 @@ def emotion_detector(text_to_analyse: str) -> dict:
         fear = r['emotionPredictions'][0]['emotion']['fear']
         joy = r['emotionPredictions'][0]['emotion']['joy']
         sadness = r['emotionPredictions'][0]['emotion']['sadness']
-        dominant_emotion = max([anger, disgust, fear, joy, sadness])
+        arr = [anger, disgust, fear, joy, sadness]
+        dominant_emotion = max(arr, key=arr.get)
 
         response_dict = {
             'anger': anger,
@@ -27,4 +28,4 @@ def emotion_detector(text_to_analyse: str) -> dict:
         return response_dict
     except Exception as e:
         print(f'Error occurred=>{e}')
-ķ       return {}
+        return {}
