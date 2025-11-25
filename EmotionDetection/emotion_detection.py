@@ -6,7 +6,7 @@ def emotion_detector(text_to_analyse: str) -> dict:
         url = 'https://sn-watson-emotion.labs.skills.network/v1/watson.runtime.nlp.v1/NlpService/EmotionPredict'
         headers = {"grpc-metadata-mm-model-id": "emotion_aggregated-workflow_lang_en_stock"}
 
-        r = requests.post(url, headers=headers, json=body).json()
+        r = requests.post(url, headers=headers, json=body)
 
         response_dict = {
             'anger': None,
@@ -18,6 +18,8 @@ def emotion_detector(text_to_analyse: str) -> dict:
 
         if r.status_code == 400:
             return response_dict
+        
+        r = r.json()
 
         anger = r['emotionPredictions'][0]['emotion']['anger']
         disgust = r['emotionPredictions'][0]['emotion']['disgust']
