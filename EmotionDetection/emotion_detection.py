@@ -14,6 +14,7 @@ def emotion_detector(text_to_analyse: str) -> dict:
             'fear': None,
             'joy': None,
             'sadness': None,
+            'dominant_emotion': None
         }
 
         if r.status_code == 400:
@@ -36,9 +37,6 @@ def emotion_detector(text_to_analyse: str) -> dict:
         }
 
         response_dict['dominant_emotion'] = max(response_dict, key=response_dict.get)
-
-        if response_dict['dominant_emotion'] == None:
-            return 'Invalid text! Please try again!'
 
         return response_dict
     except Exception as e:

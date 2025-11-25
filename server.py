@@ -13,7 +13,11 @@ def analyze():
     Returns detected emotion for provided text.
     """
     text = request.args.get("textToAnalyze")
-    return f'Here is your response: {emotion_detector(text)}'
+    r = emotion_detector(text)
+    if r.get('dominant_emotion') == None:
+        return 'Invalid text! Please try again!'
+
+    return f'Here is your response: {}'
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=1337, debug=True)
