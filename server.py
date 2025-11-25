@@ -1,3 +1,6 @@
+"""
+A web app for emotion detection using AI
+"""
 from flask import Flask, request, render_template
 from EmotionDetection.emotion_detection import emotion_detector
 
@@ -5,6 +8,9 @@ app = Flask(__name__)
 
 @app.route("/", methods=["GET"])
 def index():
+    """
+    Main index.html page
+    """
     return render_template('index.html', title='Title page yo!')
 
 @app.route("/emotionDetector", methods=["GET"])
@@ -14,7 +20,7 @@ def analyze():
     """
     text = request.args.get("textToAnalyze")
     r = emotion_detector(text)
-    if r.get('dominant_emotion') == None:
+    if r.get('dominant_emotion') is None:
         return 'Invalid text! Please try again!'
 
     return f'Here is your response: {r}'
