@@ -17,7 +17,7 @@ def analyze():
     if r.get('dominant_emotion') == None:
         return 'Invalid text! Please try again!'
 
-    return f'Here is your response: {}'
+    return f'Here is your response: {r}'
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=1337, debug=True)
